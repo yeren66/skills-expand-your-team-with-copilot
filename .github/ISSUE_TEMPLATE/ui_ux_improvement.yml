@@ -1,0 +1,237 @@
+name: UI/UX Improvement
+description: Suggest improvements to the website's design, styling, or user experience
+title: "[UI/UX] "
+labels: ["ui/ux", "enhancement", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a UI/UX improvement! Please provide detailed information to help Copilot coding agent implement design and usability enhancements.
+
+  - type: input
+    id: improvement_title
+    attributes:
+      label: Improvement Title
+      description: Provide a clear title for the UI/UX improvement
+      placeholder: "Example: Add dark mode toggle for better accessibility"
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_issue
+    attributes:
+      label: Current Issue or Pain Point
+      description: What specific UI/UX problem needs improvement? What makes the current design difficult to use?
+      placeholder: |
+        Example: The website currently only has a light theme, but many students prefer dark interfaces, especially when using the site in the evening. The bright white background can be harsh on the eyes in low-light conditions and doesn't match modern design trends that students expect.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: improvement_type
+    attributes:
+      label: Type of Improvement
+      description: What category does this improvement fall into?
+      options:
+        - Visual Design (colors, fonts, layout)
+        - User Interface (buttons, forms, navigation)
+        - User Experience (workflow, interactions)
+        - Accessibility (screen readers, keyboard navigation)
+        - Mobile Responsiveness
+        - Performance (loading times, animations)
+        - Brand/Theme Consistency
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_changes
+    attributes:
+      label: Proposed Changes
+      description: Describe exactly what you want to change and how it should look/work
+      placeholder: |
+        Example: 
+        - Add a dark mode toggle button in the top right corner of the header
+        - When clicked, switch the color scheme to dark backgrounds with light text
+        - Use appropriate contrast ratios for accessibility
+        - Remember the user's preference using localStorage
+        - Ensure all components (cards, modals, forms) work in both themes
+    validations:
+      required: true
+
+  - type: dropdown
+    id: target_users
+    attributes:
+      label: Primary Beneficiaries
+      description: Who would most benefit from this improvement?
+      options:
+        - Students
+        - Teachers
+        - Administrators
+        - Parents
+        - All Users
+        - Users with Disabilities
+        - Mobile Users
+    validations:
+      required: true
+
+  - type: textarea
+    id: user_impact
+    attributes:
+      label: Expected User Impact
+      description: How will this improvement make the website better for users?
+      placeholder: |
+        Example benefits:
+        - Reduces eye strain for users in low-light environments
+        - Follows modern design trends that students expect
+        - Improves accessibility for users with light sensitivity
+        - Provides personalization options that enhance user satisfaction
+        - May reduce battery usage on mobile devices with OLED screens
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Define specific criteria that must be met for this improvement to be considered complete
+      placeholder: |
+        - [ ] Dark mode toggle button appears in the header
+        - [ ] Toggle switches between light and dark themes smoothly
+        - [ ] All text maintains proper contrast ratios (WCAG AA compliance)
+        - [ ] All components (activity cards, modals, forms) display correctly in both modes
+        - [ ] User's theme preference is saved and persists across browser sessions
+        - [ ] Theme switching works on both desktop and mobile devices
+        - [ ] No accessibility features are broken by theme changes
+        - [ ] Loading performance is not significantly impacted
+    validations:
+      required: true
+
+  - type: textarea
+    id: design_inspiration
+    attributes:
+      label: Design Examples or Inspiration
+      description: Include links, screenshots, or descriptions of similar designs you've seen that work well
+      placeholder: |
+        Design inspiration:
+        - GitHub's dark mode implementation
+        - Discord's theme switching
+        - Material Design dark theme guidelines
+        
+        Attach screenshots or describe specific elements you like from other websites.
+
+  - type: dropdown
+    id: visual_priority
+    attributes:
+      label: Visual Priority
+      description: How visually prominent should this change be?
+      options:
+        - Subtle change that doesn't draw attention
+        - Noticeable improvement that enhances the design
+        - Major visual change that transforms the appearance
+        - Should match the current design style exactly
+    validations:
+      required: true
+
+  - type: textarea
+    id: color_schemes
+    attributes:
+      label: Color Schemes and Styling Details
+      description: Specify colors, fonts, spacing, or other visual details
+      placeholder: |
+        Light theme (current):
+        - Background: white (#ffffff)
+        - Text: dark gray (#333333)
+        - Primary: blue (#007bff)
+        
+        Proposed dark theme:
+        - Background: dark gray (#1a1a1a)
+        - Text: light gray (#e0e0e0)
+        - Primary: lighter blue (#4dabf7)
+        - Cards: slightly lighter gray (#2d2d2d)
+        
+        Fonts and spacing should remain the same.
+
+  - type: textarea
+    id: mobile_considerations
+    attributes:
+      label: Mobile and Responsive Considerations
+      description: How should this improvement work on mobile devices and different screen sizes?
+      placeholder: |
+        Mobile requirements:
+        - Dark mode toggle should be easily accessible on mobile screens
+        - Theme switching should work with touch interactions
+        - All color changes should maintain readability on small screens
+        - Consider mobile-specific dark mode preferences (system settings)
+
+  - type: textarea
+    id: technical_suggestions
+    attributes:
+      label: Technical Implementation Hints
+      description: Any technical suggestions for how to implement this improvement?
+      placeholder: |
+        Possible implementation:
+        - Use CSS custom properties (variables) for theme colors
+        - Add a theme toggle button component
+        - Store theme preference in localStorage
+        - Use JavaScript to add/remove theme classes on body element
+        - Consider using CSS @media (prefers-color-scheme) for system preference detection
+        - Update all CSS files to support both light and dark variables
+
+  - type: textarea
+    id: accessibility_requirements
+    attributes:
+      label: Accessibility Requirements
+      description: What accessibility standards must be maintained or improved?
+      placeholder: |
+        Accessibility requirements:
+        - Maintain WCAG 2.1 AA contrast ratios in both themes
+        - Dark mode toggle should be keyboard accessible
+        - Screen readers should announce theme changes
+        - Focus indicators must be visible in both themes
+        - No information should be conveyed by color alone
+
+  - type: textarea
+    id: browser_compatibility
+    attributes:
+      label: Browser and Device Compatibility
+      description: Any specific browser or device requirements?
+      placeholder: |
+        Must work on:
+        - Chrome (desktop and mobile)
+        - Safari (desktop and mobile)
+        - Firefox (desktop and mobile)
+        - Edge (desktop)
+        
+        Should gracefully degrade on older browsers.
+
+  - type: checkboxes
+    id: related_improvements
+    attributes:
+      label: Related Improvements to Consider
+      description: Check any related improvements that might be relevant
+      options:
+        - label: Font size adjustment options
+        - label: High contrast mode for accessibility
+        - label: Color customization beyond dark/light modes
+        - label: Reduced motion options for users with vestibular disorders
+        - label: Print-friendly styling
+        - label: Better focus indicators throughout the site
+
+  - type: textarea
+    id: constraints_limitations
+    attributes:
+      label: Constraints and Limitations
+      description: Any specific requirements, limitations, or constraints to consider?
+      placeholder: |
+        Constraints:
+        - Must maintain current functionality without breaking anything
+        - Should not significantly impact page load performance
+        - Keep consistent with school branding requirements
+        - Cannot modify the overall layout structure
+        - Must work without requiring new external dependencies where possible
+        
+        Limitations:
+        - Some users may need time to adjust to new interface
+        - Need to consider users who are colorblind
+        - Must work without JavaScript for basic functionality

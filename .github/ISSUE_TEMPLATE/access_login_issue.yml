@@ -1,0 +1,264 @@
+name: Access or Login Issue
+description: Report problems with logging in, user accounts, or access permissions
+title: "[ACCESS] "
+labels: ["access", "authentication", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting an access or login issue! Please provide detailed information to help Copilot coding agent diagnose and fix authentication problems.
+
+  - type: input
+    id: access_issue_title
+    attributes:
+      label: Access Issue Summary
+      description: Provide a clear summary of the login or access problem
+      placeholder: "Example: Teachers cannot log in with their school credentials"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Type of Access Issue
+      description: What type of access problem are you experiencing?
+      options:
+        - Cannot log in (wrong username/password)
+        - Login button not working
+        - Account locked or disabled
+        - Forgot password - no reset option
+        - Login page not loading
+        - Session expires too quickly
+        - Permission denied after login
+        - New teacher account needed
+        - Student accidentally accessing teacher features
+        - Two-factor authentication problems
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user_type
+    attributes:
+      label: User Type Affected
+      description: What type of user is having trouble accessing the system?
+      options:
+        - Teacher
+        - Administrator
+        - Student (if they need special access)
+        - Multiple user types
+        - All users
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem_description
+    attributes:
+      label: Detailed Problem Description
+      description: Describe exactly what happens when you try to log in or access features
+      placeholder: |
+        Example: When teachers click the "Login" button and enter their school email and password, they see an error message saying "Invalid credentials" even though they're using the correct information. This started happening yesterday and affects multiple teachers.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Provide step-by-step instructions to reproduce the access issue
+      placeholder: |
+        1. Go to the main activities website
+        2. Click the "Login" button (👤 icon) in the top right
+        3. Enter email: teacher@mergington.edu
+        4. Enter password: [correct password]
+        5. Click "Login" button
+        6. See error message: "Invalid credentials"
+      value: |
+        1. 
+        2. 
+        3. 
+        4. 
+        5. 
+    validations:
+      required: true
+
+  - type: textarea
+    id: error_messages
+    attributes:
+      label: Error Messages
+      description: What exact error messages do you see? Include any error codes or technical details.
+      placeholder: |
+        Example error messages:
+        - "Invalid credentials"
+        - "Access denied"
+        - "Session expired"
+        - "User not found"
+        - "Network error"
+        
+        Include any error codes or technical details if available.
+
+  - type: dropdown
+    id: affected_browsers
+    attributes:
+      label: Browser/Device Affected
+      description: Which browsers or devices have this problem?
+      options:
+        - All browsers
+        - Chrome only
+        - Safari only
+        - Firefox only
+        - Edge only
+        - Mobile devices only
+        - Desktop only
+        - Specific device (describe in additional context)
+    validations:
+      required: true
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Current Workaround
+      description: Is there any way to work around this problem? What have you tried?
+      placeholder: |
+        Attempted solutions:
+        - Cleared browser cache and cookies
+        - Tried different browsers
+        - Reset password (if option available)
+        - Used private/incognito mode
+        - Restarted computer/device
+        
+        Current workaround:
+        - None found, or
+        - [Describe any temporary solution]
+
+  - type: dropdown
+    id: urgency_level
+    attributes:
+      label: Urgency Level
+      description: How severely does this impact work or activities?
+      options:
+        - Critical - No one can log in (entire system down)
+        - High - Multiple teachers/users affected
+        - Medium - Individual user cannot access needed features
+        - Low - Inconvenient but not blocking work
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_access
+    attributes:
+      label: Expected Access and Permissions
+      description: What should users be able to do after logging in? What features should they have access to?
+      placeholder: |
+        Teachers should be able to:
+        - View all student activities and registrations
+        - Add or modify activity details
+        - Export registration lists
+        - Manage activity schedules
+        
+        Students should be able to:
+        - View and register for activities
+        - See their current registrations
+        - Update their registration information
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: How will we know this access issue is resolved?
+      placeholder: |
+        - [ ] Teachers can successfully log in with school credentials
+        - [ ] Login process works in all major browsers
+        - [ ] No error messages appear during normal login
+        - [ ] User sessions remain active for appropriate duration
+        - [ ] All intended features are accessible after login
+        - [ ] Password reset functionality works if needed
+        - [ ] Security measures remain intact (no bypassing of authentication)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: specific_accounts
+    attributes:
+      label: Account-Specific Issues
+      description: Check any account-specific problems that apply
+      options:
+        - label: New teacher accounts need to be created
+        - label: Existing accounts appear to be disabled/locked
+        - label: Account permissions need to be updated
+        - label: User profiles are missing or incomplete
+        - label: Account information needs to be updated (name, email, etc.)
+        - label: Multiple accounts exist for the same person (duplicate issue)
+
+  - type: textarea
+    id: user_management_needs
+    attributes:
+      label: User Account Management Needs
+      description: Do new accounts need to be created or existing accounts modified?
+      placeholder: |
+        New accounts needed for:
+        - John Smith (new math teacher) - jsmith@mergington.edu
+        - Sarah Johnson (substitute teacher) - sjohnson@mergington.edu
+        
+        Account updates needed:
+        - Update email for Mary Wilson from mwilson@old.edu to mwilson@mergington.edu
+        - Enable administrator privileges for principal David Brown
+        
+        Accounts to disable:
+        - former.teacher@mergington.edu (no longer with school)
+
+  - type: textarea
+    id: security_considerations
+    attributes:
+      label: Security and Privacy Considerations
+      description: Any specific security requirements or concerns to address?
+      placeholder: |
+        Security requirements:
+        - Passwords must meet school district standards
+        - Two-factor authentication may be required for administrators
+        - Account lockout after failed login attempts
+        - Session timeout after period of inactivity
+        - Secure password reset process
+        
+        Privacy concerns:
+        - Ensure student data is only accessible to authorized staff
+        - Teacher accounts should not access administrative functions
+        - Audit log of who accesses student information
+
+  - type: textarea
+    id: technical_hints
+    attributes:
+      label: Technical Implementation Hints
+      description: Any technical suggestions for diagnosing or fixing this issue?
+      placeholder: |
+        Possible causes and solutions:
+        - Check authentication database for user records
+        - Verify password hashing is working correctly
+        - Review session management and timeout settings
+        - Check for database connection issues
+        - Examine server logs for authentication errors
+        - Verify email/username format validation
+        - Test API endpoints for login functionality
+        - Check if HTTPS/SSL certificates are valid
+        
+        Files to check:
+        - backend/routers/auth.py
+        - backend/database.py
+        - static/app.js (login form handling)
+
+  - type: textarea
+    id: testing_steps
+    attributes:
+      label: Testing and Verification Steps
+      description: How should the fix be tested to ensure it works correctly?
+      placeholder: |
+        Testing steps:
+        1. Test login with valid teacher credentials
+        2. Test login with invalid credentials (should show appropriate error)
+        3. Test password reset functionality (if applicable)
+        4. Verify session persistence across page reloads
+        5. Test logout functionality
+        6. Test on multiple browsers and devices
+        7. Verify appropriate error messages for different failure scenarios
+        8. Test that unauthorized users cannot access restricted features
+        9. Confirm no security vulnerabilities are introduced
