@@ -1,0 +1,193 @@
+name: Feature Request
+description: Request a new feature for the high school activities website
+title: "[FEATURE] "
+labels: ["enhancement", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! Please provide detailed information to help Copilot coding agent implement this feature effectively.
+
+  - type: input
+    id: feature_title
+    attributes:
+      label: Feature Title
+      description: Provide a clear and descriptive title for the feature
+      placeholder: "Example: Add calendar view for activities"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem_statement
+    attributes:
+      label: Problem or Need
+      description: What problem does this feature solve? Why is it needed?
+      placeholder: |
+        Example: Teachers and students find it difficult to see scheduling conflicts between activities when they're displayed as cards. A calendar view would make it much easier to identify time overlaps and plan better schedules.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Proposed Solution
+      description: Describe your vision for how this feature should work
+      placeholder: |
+        Example: Add a toggle button in the header to switch between "Card View" and "Calendar View". The calendar should show a weekly view (Sunday-Saturday) with time slots, and activities should appear in their scheduled time slots. Multiple activities at the same time should appear side by side.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature_category
+    attributes:
+      label: Feature Category
+      description: What type of feature is this?
+      options:
+        - User Interface (UI) Improvement
+        - New Functionality
+        - Data Management
+        - User Experience (UX) Enhancement
+        - Performance Improvement
+        - Accessibility Feature
+        - Integration with External Service
+        - Administrative Tool
+    validations:
+      required: true
+
+  - type: dropdown
+    id: target_users
+    attributes:
+      label: Primary Users
+      description: Who would primarily benefit from this feature?
+      options:
+        - Students
+        - Teachers
+        - Administrators
+        - Parents
+        - All Users
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Define specific, measurable criteria that must be met for this feature to be considered complete
+      placeholder: |
+        - [ ] Toggle button is visible in the header next to existing filters
+        - [ ] Calendar view displays a weekly layout (Sunday-Saturday)
+        - [ ] Activities appear in correct time slots based on their schedule
+        - [ ] Multiple activities at same time appear side by side, not overlapping
+        - [ ] Users can click on calendar activities to see full details
+        - [ ] Calendar view respects current category and day filters
+        - [ ] Feature works on both desktop and mobile devices
+        - [ ] Toggle state is remembered when user refreshes the page
+    validations:
+      required: true
+
+  - type: textarea
+    id: user_stories
+    attributes:
+      label: User Stories
+      description: Write user stories that describe how different users would interact with this feature
+      placeholder: |
+        As a student, I want to see activities in a calendar view so that I can easily spot time conflicts before registering.
+        
+        As a teacher, I want to view the weekly activity schedule so that I can plan new activities without creating conflicts.
+        
+        As an administrator, I want a visual overview of activity distribution throughout the week to ensure balanced scheduling.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature?
+      options:
+        - High - Students/teachers frequently request this
+        - Medium - Would improve user experience significantly
+        - Low - Nice to have but not urgent
+        - Critical - Required for basic functionality
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical_hints
+    attributes:
+      label: Technical Hints and Suggestions
+      description: Any technical suggestions, similar features you've seen, or implementation ideas?
+      placeholder: |
+        Possible implementation approaches:
+        - Create a new calendar component in JavaScript
+        - Use CSS Grid or Flexbox for the weekly layout
+        - Consider using a calendar library like FullCalendar.js
+        - Add new API endpoint to get activities grouped by time slots
+        - Store view preference in localStorage or user settings
+        
+        Similar features can be found in:
+        - Google Calendar
+        - Outlook Calendar
+        - School scheduling software
+
+  - type: textarea
+    id: mockups_wireframes
+    attributes:
+      label: Mockups or Wireframes
+      description: Include any sketches, mockups, or wireframes (attach images or describe layout)
+      placeholder: |
+        Describe the visual layout or attach images:
+        
+        Header: [Card View] [Calendar View] <- Toggle buttons
+        
+        Calendar Layout:
+        Sun  Mon  Tue  Wed  Thu  Fri  Sat
+        8AM  [Activity A] [Activity B] ...
+        9AM  [Activity C] ...
+        ...
+
+  - type: textarea
+    id: related_features
+    attributes:
+      label: Related Features or Dependencies
+      description: Are there other features that need to be built first, or that this connects to?
+      placeholder: |
+        This feature should work with:
+        - Existing category filters
+        - Day and time filters
+        - Search functionality
+        - Activity registration modal
+        
+        May require:
+        - New database queries for time-based grouping
+        - Updates to the filtering system
+
+  - type: textarea
+    id: limitations_constraints
+    attributes:
+      label: Limitations and Constraints
+      description: Any specific requirements, limitations, or constraints to consider?
+      placeholder: |
+        Requirements:
+        - Must work on mobile devices (responsive design)
+        - Should not slow down page loading significantly
+        - Must maintain current accessibility standards
+        - Keep consistent with existing design theme
+        
+        Constraints:
+        - Cannot modify the database schema significantly
+        - Should reuse existing API endpoints where possible
+        - Must work in all major browsers (Chrome, Safari, Firefox, Edge)
+
+  - type: checkboxes
+    id: alternatives
+    attributes:
+      label: Alternative Solutions Considered
+      description: Have you considered other ways to solve this problem?
+      options:
+        - label: Improved filtering options instead of calendar view
+        - label: Simple list view sorted by time
+        - label: Separate page for schedule overview
+        - label: Export to external calendar applications
+        - label: Email/notification system for conflicts
