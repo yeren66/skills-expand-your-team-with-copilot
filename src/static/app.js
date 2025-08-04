@@ -17,13 +17,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Authentication elements
   const loginButton = document.getElementById("login-button");
+  const registerButton = document.getElementById("register-button");
   const userInfo = document.getElementById("user-info");
   const displayName = document.getElementById("display-name");
   const logoutButton = document.getElementById("logout-button");
   const loginModal = document.getElementById("login-modal");
+  const registerModal = document.getElementById("register-modal");
   const loginForm = document.getElementById("login-form");
+  const registerForm = document.getElementById("register-form");
   const closeLoginModal = document.querySelector(".close-login-modal");
+  const closeRegisterModal = document.querySelector(".close-register-modal");
   const loginMessage = document.getElementById("login-message");
+  const registerMessage = document.getElementById("register-message");
 
   // Activity categories with corresponding colors
   const activityTypes = {
@@ -144,10 +149,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateAuthUI() {
     if (currentUser) {
       loginButton.classList.add("hidden");
+      registerButton.classList.add("hidden");
       userInfo.classList.remove("hidden");
       displayName.textContent = currentUser.display_name;
     } else {
       loginButton.classList.remove("hidden");
+      registerButton.classList.remove("hidden");
       userInfo.classList.add("hidden");
       displayName.textContent = "";
     }
@@ -202,6 +209,42 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Registration function
+  async function register(username, displayName, password) {
+    try {
+      const response = await fetch(
+        `/auth/register?username=${encodeURIComponent(
+          username
+        )}&display_name=${encodeURIComponent(displayName)}&password=${encodeURIComponent(password)}`,
+        {
+          method: "POST",
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        showRegisterMessage(
+          data.detail || "Registration failed",
+          "error"
+        );
+        return false;
+      }
+
+      // Registration successful
+      showRegisterMessage("Registration successful! You can now login.", "success");
+      // Close registration modal after a delay
+      setTimeout(() => {
+        closeRegisterModalHandler();
+      }, 2000);
+      return true;
+    } catch (error) {
+      console.error("Error during registration:", error);
+      showRegisterMessage("Registration failed. Please try again.", "error");
+      return false;
+    }
+  }
+
   // Logout function
   function logout() {
     currentUser = null;
@@ -234,15 +277,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 300);
   }
 
+  // Open registration modal
+  function openRegisterModal() {
+    registerModal.classList.remove("hidden");
+    registerModal.classList.add("show");
+    registerMessage.classList.add("hidden");
+    registerForm.reset();
+  }
+
+  // Close registration modal
+  function closeRegisterModalHandler() {
+    registerModal.classList.remove("show");
+    setTimeout(() => {
+      registerModal.classList.add("hidden");
+      registerForm.reset();
+    }, 300);
+  }
+
+  // Registration message display
+  function showRegisterMessage(text, type) {
+    registerMessage.textContent = text;
+    registerMessage.className = `message ${type}`;
+    registerMessage.classList.remove("hidden");
+  }
+
   // Event listeners for authentication
   loginButton.addEventListener("click", openLoginModal);
+  registerButton.addEventListener("click", openRegisterModal);
   logoutButton.addEventListener("click", logout);
   closeLoginModal.addEventListener("click", closeLoginModalHandler);
+  closeRegisterModal.addEventListener("click", closeRegisterModalHandler);
 
   // Close login modal when clicking outside
   window.addEventListener("click", (event) => {
     if (event.target === loginModal) {
       closeLoginModalHandler();
+    }
+    if (event.target === registerModal) {
+      closeRegisterModalHandler();
     }
   });
 
@@ -252,6 +324,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     await login(username, password);
+  });
+
+  // Handle registration form submission
+  registerForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const username = document.getElementById("register-username").value;
+    const displayName = document.getElementById("register-display-name").value;
+    const password = document.getElementById("register-password").value;
+    await register(username, displayName, password);
   });
 
   // Show loading skeletons

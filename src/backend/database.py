@@ -1,15 +1,50 @@
 """
-MongoDB database configuration and setup for Mergington High School API
+In-memory database configuration and setup for Mergington High School API
 """
 
-from pymongo import MongoClient
 from argon2 import PasswordHasher
 
-# Connect to MongoDB
-client = MongoClient('mongodb://localhost:27017/')
-db = client['mergington_high']
-activities_collection = db['activities']
-teachers_collection = db['teachers']
+# In-memory storage (for development without MongoDB)
+activities_data = {}
+teachers_data = {}
+
+class MockCollection:
+    def __init__(self, data_store):
+        self.data_store = data_store
+    
+    def count_documents(self, query):
+        return len(self.data_store)
+    
+    def insert_one(self, doc):
+        doc_id = doc.get('_id')
+        if doc_id:
+            self.data_store[doc_id] = doc
+        return type('InsertResult', (), {'inserted_id': doc_id})()
+    
+    def find_one(self, query):
+        if '_id' in query:
+            return self.data_store.get(query['_id'])
+        return None
+    
+    def find(self, query=None):
+        return list(self.data_store.values())
+    
+    def update_one(self, filter_query, update_doc):
+        if '_id' in filter_query:
+            doc_id = filter_query['_id']
+            if doc_id in self.data_store:
+                if '$set' in update_doc:
+                    self.data_store[doc_id].update(update_doc['$set'])
+                elif '$push' in update_doc:
+                    for key, value in update_doc['$push'].items():
+                        if key not in self.data_store[doc_id]:
+                            self.data_store[doc_id][key] = []
+                        self.data_store[doc_id][key].append(value)
+        return type('UpdateResult', (), {'modified_count': 1})()
+
+# Create mock collections
+activities_collection = MockCollection(activities_data)
+teachers_collection = MockCollection(teachers_data)
 
 # Methods
 def hash_password(password):
