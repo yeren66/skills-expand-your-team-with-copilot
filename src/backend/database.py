@@ -27,7 +27,13 @@ class MockCollection:
         return None
     
     def find(self, query=None):
-        return list(self.data_store.values())
+        # Ensure all returned documents include the '_id' field
+        result = []
+        for doc_id, doc in self.data_store.items():
+            doc_with_id = doc.copy()  # Don't modify the original
+            doc_with_id['_id'] = doc_id
+            result.append(doc_with_id)
+        return result
     
     def update_one(self, filter_query, update_doc):
         if '_id' in filter_query:
@@ -41,6 +47,22 @@ class MockCollection:
                             self.data_store[doc_id][key] = []
                         self.data_store[doc_id][key].append(value)
         return type('UpdateResult', (), {'modified_count': 1})()
+    
+    def aggregate(self, pipeline):
+        # Simple implementation of aggregate for the days endpoint
+        # This only supports the specific pipeline used in get_available_days
+        if len(pipeline) >= 2 and pipeline[0].get("$unwind") == "$schedule_details.days":
+            # Extract unique days from all activities
+            days = set()
+            for doc in self.data_store.values():
+                if "schedule_details" in doc and "days" in doc["schedule_details"]:
+                    for day in doc["schedule_details"]["days"]:
+                        days.add(day)
+            
+            # Return in the format expected by the aggregation pipeline
+            return [{"_id": day} for day in sorted(days)]
+        
+        return []
 
 # Create mock collections
 activities_collection = MockCollection(activities_data)
