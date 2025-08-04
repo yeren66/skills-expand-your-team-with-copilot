@@ -17,6 +17,38 @@ def hash_password(password):
     """Hash password using SHA-256"""
     return hashlib.sha256(password.encode()).hexdigest()
 
+@router.post("/register")
+def register(username: str, display_name: str, password: str) -> Dict[str, Any]:
+    """Register a new teacher account"""
+    # Check if username already exists
+    existing_teacher = teachers_collection.find_one({"_id": username})
+    
+    if existing_teacher:
+        raise HTTPException(status_code=400, detail="Username already exists")
+    
+    # Hash the provided password
+    hashed_password = hash_password(password)
+    
+    # Create new teacher record
+    new_teacher = {
+        "_id": username,
+        "username": username,
+        "display_name": display_name,
+        "password": hashed_password,
+        "role": "teacher"
+    }
+    
+    # Insert the new teacher
+    teachers_collection.insert_one(new_teacher)
+    
+    # Return teacher information (excluding password)
+    return {
+        "username": new_teacher["username"],
+        "display_name": new_teacher["display_name"],
+        "role": new_teacher["role"],
+        "message": "Registration successful"
+    }
+
 @router.post("/login")
 def login(username: str, password: str) -> Dict[str, Any]:
     """Login a teacher account"""
