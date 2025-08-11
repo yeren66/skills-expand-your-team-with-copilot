@@ -1,0 +1,17 @@
+{
+  "patch_plan": {
+    "issue_title": "Dark Mode",
+    "generated_at": "2025-08-11T18:05:23.057235",
+    "strategy": "demo_safe_patch",
+    "patches": [
+      {
+        "file": "README.md",
+        "type": "append",
+        "description": "Add agent fix demo section",
+        "content": "Agent demo fix applied",
+        "risk_level": "low",
+        "reversible": true
+      }
+    ]
+  }
+}
