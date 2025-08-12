@@ -1,0 +1,6 @@
+Agent Job Status
+Job ID: test-pr-fix-001
+Issue: #4
+Started: 2025-08-12T11:10:44.872806
+
+Status: Initializing...
