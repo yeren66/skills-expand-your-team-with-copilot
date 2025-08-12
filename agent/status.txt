@@ -1,0 +1,6 @@
+Agent Job Status
+Job ID: test-proxy-workflow-001
+Issue: #4
+Started: 2025-08-12T11:22:50.642081
+
+Status: Initializing...
