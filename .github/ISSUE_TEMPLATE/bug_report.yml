@@ -1,0 +1,151 @@
+name: Bug Report
+description: Report a problem with the high school activities website
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug! Please provide detailed information to help Copilot coding agent fix the issue efficiently.
+
+  - type: input
+    id: summary
+    attributes:
+      label: Bug Summary
+      description: Provide a clear and concise summary of what the bug is
+      placeholder: "Example: Students cannot register for activities on mobile devices"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem Description
+      description: Describe the issue in detail. What were you trying to do? What happened instead?
+      placeholder: |
+        Example: When students try to register for activities using their phones, the registration modal doesn't appear when they click the "Register" button. This only happens on mobile devices - it works fine on desktop computers.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Provide step-by-step instructions to reproduce the bug
+      placeholder: |
+        1. Open the website on a mobile device
+        2. Click on any activity card
+        3. Click the "Register" button
+        4. Notice that nothing happens
+      value: |
+        1. 
+        2. 
+        3. 
+        4. 
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead?
+      placeholder: "The registration modal should open, allowing students to enter their email and register for the activity"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device Type
+      description: What type of device are you using?
+      options:
+        - Desktop Computer
+        - Laptop
+        - Tablet (iPad, Android tablet)
+        - Mobile Phone (iPhone, Android)
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      description: Which browser are you using?
+      options:
+        - Chrome
+        - Safari
+        - Firefox
+        - Edge
+        - Other (please specify in additional context)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user_type
+    attributes:
+      label: User Type
+      description: Are you a student, teacher, or administrator?
+      options:
+        - Student
+        - Teacher
+        - Administrator
+        - Parent
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: How will we know this bug is fixed? What should work correctly?
+      placeholder: |
+        - [ ] Students can successfully register for activities on mobile devices
+        - [ ] The registration modal opens properly on all screen sizes
+        - [ ] Registration confirmation appears after successful signup
+        - [ ] No JavaScript errors in mobile browser console
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context and Hints
+      description: |
+        Any additional information that might help fix this issue:
+        - Screenshots or recordings
+        - Error messages
+        - Suggested solutions
+        - Related issues
+      placeholder: |
+        Attach screenshots if possible. If you see any error messages in the browser console, please include them here.
+        
+        Possible causes might be:
+        - CSS media queries not handling mobile screens properly
+        - JavaScript event handlers not working on touch devices
+        - Modal z-index issues on mobile browsers
+
+  - type: checkboxes
+    id: impact
+    attributes:
+      label: Impact Level
+      description: How severely does this affect users?
+      options:
+        - label: Prevents students from registering (high impact)
+        - label: Makes the website difficult to use (medium impact)
+        - label: Minor visual issue (low impact)
+        - label: Only affects specific browsers or devices (medium impact)
+
+  - type: textarea
+    id: limitations
+    attributes:
+      label: Known Limitations or Constraints
+      description: Are there any specific requirements, limitations, or constraints to consider when fixing this?
+      placeholder: |
+        Example limitations:
+        - Must work on all mobile devices (iOS and Android)
+        - Should not break existing desktop functionality
+        - Keep the same user interface design
+        - Must work without JavaScript if possible

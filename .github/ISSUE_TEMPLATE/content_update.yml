@@ -1,0 +1,246 @@
+name: Content Update
+description: Request updates to text, activities, or other content on the website
+title: "[CONTENT] "
+labels: ["content", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for requesting a content update! Please provide detailed information to help Copilot coding agent make the necessary content changes accurately.
+
+  - type: input
+    id: update_title
+    attributes:
+      label: Content Update Title
+      description: Provide a clear title for what content needs to be updated
+      placeholder: "Example: Update school name and add new robotics club activity"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: content_type
+    attributes:
+      label: Type of Content Update
+      description: What type of content needs to be updated?
+      options:
+        - Website Text (headings, descriptions, labels)
+        - Activity Information (name, description, schedule)
+        - School Information (name, contact, branding)
+        - Navigation Menu Items
+        - Footer Information
+        - Error Messages or Notifications
+        - Help Text or Instructions
+        - Add New Activities
+        - Remove/Archive Activities
+        - Update Activity Categories
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_content
+    attributes:
+      label: Current Content
+      description: What is the current text/content that needs to be changed? Copy and paste the exact text.
+      placeholder: |
+        Example current content:
+        "Mergington High School"
+        "Extracurricular Activities"
+        
+        Current activity: "Chess Club - Learn strategic thinking through chess. Meets Tuesdays 3:30-4:30 PM"
+    validations:
+      required: true
+
+  - type: textarea
+    id: new_content
+    attributes:
+      label: New Content
+      description: What should the new text/content be? Provide the exact text you want.
+      placeholder: |
+        Example new content:
+        "Mergington Academy"
+        "Student Activities & Clubs"
+        
+        Updated activity: "Chess Club - Develop critical thinking and strategy skills through competitive chess. Meets Tuesdays and Thursdays 3:30-4:30 PM in Room 204"
+    validations:
+      required: true
+
+  - type: textarea
+    id: location
+    attributes:
+      label: Content Location
+      description: Where exactly on the website is this content located? Be as specific as possible.
+      placeholder: |
+        Example locations:
+        - Main page header (the large title at the top)
+        - Activity card for "Chess Club" in the Arts category
+        - Footer copyright text
+        - Login modal title
+        - Navigation menu item "Activities"
+        - Error message when registration fails
+    validations:
+      required: true
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Update Urgency
+      description: How quickly does this content need to be updated?
+      options:
+        - High - Incorrect information that confuses users
+        - Medium - Information that should be updated soon
+        - Low - Nice to have but not urgent
+        - Critical - Contains errors that prevent functionality
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason_context
+    attributes:
+      label: Reason for Update
+      description: Why does this content need to be changed? Provide context for the change.
+      placeholder: |
+        Example reasons:
+        - School name has officially changed to "Mergington Academy"
+        - Chess Club schedule has changed to include Thursday meetings
+        - Students are confused by the current activity description
+        - New robotics program needs to be added to the website
+        - Outdated contact information is causing communication issues
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: How will we verify that the content update is complete and correct?
+      placeholder: |
+        - [ ] School name displays as "Mergington Academy" in the main header
+        - [ ] Chess Club description includes both Tuesday and Thursday meetings
+        - [ ] Room number "204" is included in the activity details
+        - [ ] Changes are visible on all pages where this content appears
+        - [ ] No spelling or grammatical errors in the new content
+        - [ ] Content displays correctly on both desktop and mobile devices
+        - [ ] Links still work if any were included in the content
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: content_scope
+    attributes:
+      label: Content Update Scope
+      description: Check all areas where this content appears and needs to be updated
+      options:
+        - label: Main page header/title
+        - label: Activity cards/listings
+        - label: Navigation menu
+        - label: Footer information
+        - label: Modal dialogs (login, registration)
+        - label: Error messages
+        - label: Page titles (browser tab titles)
+        - label: Meta descriptions for search engines
+        - label: Help text or tooltips
+        - label: Email templates or notifications
+
+  - type: textarea
+    id: new_activities
+    attributes:
+      label: New Activities to Add (if applicable)
+      description: If adding new activities, provide complete details for each one
+      placeholder: |
+        Activity Name: Robotics Club
+        Category: Technology
+        Description: Build and program robots for competitions. Learn engineering principles and coding skills.
+        Schedule: Wednesdays 3:00-5:00 PM
+        Location: Engineering Lab (Room 301)
+        Instructor: Mr. Johnson
+        Maximum Enrollment: 15 students
+        Requirements: None - beginners welcome!
+        
+        Activity Name: [Next activity...]
+
+  - type: textarea
+    id: activities_to_remove
+    attributes:
+      label: Activities to Remove or Archive (if applicable)
+      description: List any activities that should be removed or marked as inactive
+      placeholder: |
+        Activities to remove:
+        - Photography Club (instructor no longer available)
+        - Summer Baseball (out of season)
+        
+        Activities to mark as "temporarily suspended":
+        - Debate Team (will resume next semester)
+
+  - type: textarea
+    id: style_formatting
+    attributes:
+      label: Style and Formatting Requirements
+      description: Any specific formatting, capitalization, or style requirements?
+      placeholder: |
+        Style requirements:
+        - Use title case for activity names (Example: "Robotics Club")
+        - Include room numbers in parentheses: "Room 204"
+        - Time format: "3:30-4:30 PM" (with AM/PM)
+        - Days should be spelled out: "Monday" not "Mon"
+        - Use consistent punctuation and grammar
+        - Keep descriptions between 1-3 sentences
+
+  - type: textarea
+    id: approval_required
+    attributes:
+      label: Approval and Review Requirements
+      description: Does this content need approval from specific people before going live?
+      placeholder: |
+        Content approval needed from:
+        - Principal Smith (for school name changes)
+        - Activities Coordinator (for new club descriptions)
+        - IT Department (for technical content)
+        
+        No approval needed for:
+        - Minor text corrections
+        - Spelling/grammar fixes
+
+  - type: textarea
+    id: related_updates
+    attributes:
+      label: Related Updates Needed
+      description: Are there other places or systems that need similar updates?
+      placeholder: |
+        This content change may also require updates to:
+        - School website homepage
+        - Student handbook
+        - Parent newsletters
+        - Social media profiles
+        - Printed materials/brochures
+        
+        (Note: This issue only covers the activities website - other systems may need separate updates)
+
+  - type: textarea
+    id: technical_notes
+    attributes:
+      label: Technical Implementation Notes
+      description: Any technical considerations for implementing these content changes?
+      placeholder: |
+        Technical considerations:
+        - Content is likely in HTML files in the /src/static/ directory
+        - Activity data might be in database files or JSON
+        - Check if content appears in multiple files that need updating
+        - Ensure special characters display correctly
+        - Test that long activity names don't break the card layout
+        - Verify that new content is accessible to screen readers
+
+  - type: textarea
+    id: testing_verification
+    attributes:
+      label: Testing and Verification Steps
+      description: How should the changes be tested to ensure they're working correctly?
+      placeholder: |
+        Testing steps:
+        1. Check that new content displays correctly in all browsers
+        2. Verify content appears properly on mobile devices
+        3. Test that activity registration still works for updated activities
+        4. Confirm search functionality finds activities with new names/descriptions
+        5. Check that filtering by category still works correctly
+        6. Verify no broken links or formatting issues
+        7. Test with screen readers for accessibility
